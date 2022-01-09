@@ -14,8 +14,13 @@ class CreateBookReturnTable extends Migration
     public function up()
     {
         Schema::create('book_return', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('book_return_id');
+            $table->unsignedBigInteger('book_borrow_id');
+            $table->date('date_of_returning');
+            $table->integer('fine');
             $table->timestamps();
+
+            $table->foreign('book_borrow_id')->references('book_borrow_id')->on('book_borrow');
         });
     }
 
