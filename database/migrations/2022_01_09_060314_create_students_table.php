@@ -22,7 +22,7 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('class_id');
             $table->timestamps();
 
-            $table->foreign('class_id')->references('class_id')->on('class');
+            $table->foreign('class_id')->references('class_id')->on('grade');
         });
     }
 
