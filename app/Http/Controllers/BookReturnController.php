@@ -13,7 +13,7 @@ class BookReturnController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'book_borrow_id' => 'required,'
+            'book_borrow_id' => 'required',
             'date_of_returning' => 'required',
             'fine' => 'required'
         ]);

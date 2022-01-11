@@ -18,6 +18,7 @@ class CreateBookBorrowTable extends Migration
             $table->unsignedBigInteger('student_id');
             $table->date('date_of_borrowing');
             $table->date('date_of_returning');
+            $table->timestamps();
             
             $table->foreign('student_id')->references('student_id')->on('students');
         });

@@ -21,3 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/Students', 'StudentsController@store');
 Route::post('/Grade', 'GradeController@store');
 Route::post('/Book', 'BookController@store');
+Route::post('/BookBorrow', 'BookBorrowController@store');
+Route::post('/BookReturn', 'BookReturnController@store');
+Route::post('/BookBorrowDetails', 'BookBorrowDetailsController@store');

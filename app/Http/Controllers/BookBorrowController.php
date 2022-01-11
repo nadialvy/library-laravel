@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\BookBorrow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Suport\FFacades\DB;
+use Illuminate\Support\Facades\DB;
 
 class BookBorrowController extends Controller
 {
@@ -15,7 +15,7 @@ class BookBorrowController extends Controller
         $validator = Validator::make($request->all(), [
             'student_id' => 'required',
             'date_of_borrowing' => 'required',
-            'ddate_of_returning'  => 'required'
+            'date_of_returning'  => 'required'
         ]);
 
         if($validator->fails()){
@@ -28,7 +28,7 @@ class BookBorrowController extends Controller
             'date_of_returning' => $request->date_of_returning
         ]);
 
-        $data = BookBorrow::where('student_id', '=', $request->student_id);
+        $data = BookBorrow::where('student_id', '=', $request->student_id)->get();
         if($store){
             return Response() -> json([
                 'status' => 1,
