@@ -24,9 +24,8 @@ class BookController extends Controller
             return Response() -> json($validator->errors());
         }
 
-        $store = DB::table('book')
-        ->insert([
-            'book_name' => $request->book_name,
+        $store = Book::create([
+            'book_name' =>$request->book_name,
             'author' => $request->author,
             'desc' => $request->desc
         ]);

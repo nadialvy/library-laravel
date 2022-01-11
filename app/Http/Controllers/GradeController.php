@@ -21,8 +21,13 @@ class GradeController extends Controller
             return Response() -> json($validator -> errors());
         }
 
-        $store = DB::table('grade')
-        ->insert([
+        // $store = DB::table('grade')
+        // ->insert([
+        //     'class_name' =>$request->class_name,
+        //     'group' => $request->group
+        // ]);
+
+        $store = Grade::create([
             'class_name' =>$request->class_name,
             'group' => $request->group
         ]);

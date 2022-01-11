@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //POST
+Route::post('/Students', 'StudentsController@store');
 Route::post('/Grade', 'GradeController@store');
 Route::post('/Book', 'BookController@store');
