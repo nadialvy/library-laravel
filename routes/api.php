@@ -44,6 +44,16 @@ Route::get('/BookReturn/{id}', 'BookReturnController@detail');
 Route::get('/BookBorrowDetails', 'BookBorrowDetailsController@show');
 Route::get('/BookBorrowDetails/{id}', 'BookBorrowDetailsController@detail');
 
+//DELETE
+Route::delete('/Students/{id}', 'StudentsController@delete');
+Route::delete('/Grade/{id}', 'GradeController@delete');
+Route::delete('/Book/{id}', 'BookController@delete');
+Route::delete('/BookBorrow/{id}', 'BookBorrowController@delete');
+Route::delete('/BookReturn/{id}', 'BookReturnController@delete');
+Route::delete('/BookBorrowDetails/{id}', 'BookBorrowDetailsController@delete');
+
+
+
 
 
 

@@ -59,7 +59,7 @@ class StudentsController extends Controller
         if(DB::table('students')->where('student_id', $id)->exists()){
             $detail_student = DB::table('students')
             ->select('students.*')
-            ->where('student_id', $id)
+            ->where('student_id', '=', $id)
             ->get();
             return Response() -> json($detail_student);
         } else {
@@ -67,4 +67,25 @@ class StudentsController extends Controller
         }
     }
     //read data end
+
+    //delete data start
+    public function delete($id){
+        $delete = DB::table('students')
+        ->where('student_id', '=', $id)
+        ->delete();
+
+        if($delete){
+            return Response() -> json([
+                'status' => 1,
+                'message' => 'Succes delete data!'
+        ]);
+        } else {
+            return Response() -> json([
+                'status' => 0,
+                'message' => 'Failed delete data!'
+        ]);
+        }
+
+    }
+    //delete data end
 }
