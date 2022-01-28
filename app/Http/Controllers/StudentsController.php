@@ -68,6 +68,50 @@ class StudentsController extends Controller
     }
     //read data end
 
+    //update data start
+    public function update($id, Request $request ){
+        $validator = Validator::make($request->all(),
+        [
+            'student_name' => 'required',
+            'date_of_birth' => 'required',
+            'gender' => 'required',
+            'address' => 'required',
+            'class_id' => 'required'
+        ]);
+
+        if($validator -> fails()){
+            return Response()->json($validator->errors());
+        }
+
+        $update=DB::table('students')
+        ->where('student_id', '=', $id)
+        ->update(
+            [
+                'student_name' => $request->student_name,
+                'date_of_birth' => $request->date_of_birth,
+                'gender' => $request->gender,
+                'address' => $request->address,
+                'class_id' => $request->class_id
+            ]
+        );
+
+        $data=Students::where('student_id', '=', $id) ->get();
+        if($update){
+            return Response() -> json([
+                'status' => 1,
+                'message' => 'Success updating data!',
+                'data' => $data  
+            ]);
+        } else {
+            return Response() -> json([
+                'status' => 0,
+                'message' => 'Failed updating data!'
+            ]);
+        }
+
+    }
+    //update data end
+
     //delete data start
     public function delete($id){
         $delete = DB::table('students')
@@ -88,4 +132,5 @@ class StudentsController extends Controller
 
     }
     //delete data end
+
 }

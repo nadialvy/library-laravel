@@ -52,6 +52,15 @@ Route::delete('/BookBorrow/{id}', 'BookBorrowController@delete');
 Route::delete('/BookReturn/{id}', 'BookReturnController@delete');
 Route::delete('/BookBorrowDetails/{id}', 'BookBorrowDetailsController@delete');
 
+//UPDATE
+Route::put('/Students/{id}', 'StudentsController@update');
+Route::put('/Grade/{id}', 'GradeController@update');
+Route::put('/Book/{id}', 'BookController@update');
+Route::put('/BookBorrow/{id}', 'BookBorrowController@update');
+Route::put('/BookReturn/{id}', 'BookReturnController@update');
+Route::put('/BookBorrowDetails/{id}', 'BookBorrowDetailsController@update');
+
+
 
 
 

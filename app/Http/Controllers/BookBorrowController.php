@@ -64,6 +64,43 @@ class BookBorrowController extends Controller
     }
     //read data end
 
+    //update data start
+    public function update($id, Request $request){
+        $validator=Validator::make($request->all(),
+        [
+            'student_id' => 'required',
+            'date_of_borrowing' => 'required',
+            'date_of_returning'  => 'required'
+        ]);
+
+        if($validator->fails()){
+            return Response()->json($validator->errors());
+        }
+
+        $update=DB::table('book_borrow')
+        ->where('book_borrow_id', '=', $id)
+        ->update([
+            'student_id' => $request->student_id,
+            'date_of_borrowing' => $request->date_of_borrowing,
+            'date_of_returning' => $request->date_of_returning
+        ]);
+
+        $data=BookBorrow::where('book_borrow_id', '=', $id)->get();
+        if($update){
+            return Response() -> json([
+                'status' => 1,
+                'message' => 'Success updating data!',
+                'data' => $data  
+            ]);
+        } else {
+            return Response() -> json([
+                'status' => 0,
+                'message' => 'Failed updating data!'
+            ]);
+        }
+    }
+    //update data end
+
     //delete data start
     public function delete($id){
         $delete=DB::table('book_borrow')

@@ -67,6 +67,41 @@ class GradeController extends Controller
     }
     //read data end
 
+    //update data start
+    public function update($id, Request $request){
+        $validator = Validator::make($request->all(),
+        [
+            'class_name' => 'required',
+            'group' => 'required'
+        ]);
+
+        if($validator -> fails()){
+            return Response() -> json($validator -> errors());
+        }
+
+        $update = DB::table('grade')
+        ->where('class_id', '=', $id)
+        ->update([
+            'class_name' => $request->class_name,
+            'group' => $request->group
+        ]);
+
+        $data=Grade::where('class_id', '=', $id)->get();
+        if($update){
+            return Response() -> json([
+                'status' => 1,
+                'message' => 'Success updating data!',
+                'data' => $data  
+            ]);
+        } else {
+            return Response() -> json([
+                'status' => 0,
+                'message' => 'Failed updating data!'
+            ]);
+        }
+    }
+    //update data end
+
     //delete data start
     public function delete($id){
         $delete = DB::table('grade')
