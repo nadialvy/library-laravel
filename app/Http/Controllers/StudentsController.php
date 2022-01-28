@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class StudentsController extends Controller
 {
@@ -49,4 +49,22 @@ class StudentsController extends Controller
         }
     }
     //create data end
+
+    //read data start
+    public function show(){
+        return Students::all();
+    }
+
+    public function detail($id){
+        if(DB::table('students')->where('student_id', $id)->exists()){
+            $detail_student = DB::table('students')
+            ->select('students.*')
+            ->where('student_id', $id)
+            ->get();
+            return Response() -> json($detail_student);
+        } else {
+            return Response()-> json(['message' => 'Could not find the data']);
+        }
+    }
+    //read data end
 }

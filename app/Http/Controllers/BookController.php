@@ -46,4 +46,22 @@ class BookController extends Controller
         }
     }
     //create data end
+
+    //read data start
+    public function show(){
+        return Book::all();
+    }
+
+    public function detail($id){
+        if(DB::table('book')->where('book_id', $id)->exists()){
+            $detail_book = DB::table('book')
+            ->select('book.*')
+            ->where('book_id', $id)
+            ->get();
+            return Response()->json($detail_book);
+        }else {
+            return Response()->json(['message' => 'Couldnt find the data']);
+        }
+    }
+    //read data end
 }

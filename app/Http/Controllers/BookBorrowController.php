@@ -44,4 +44,23 @@ class BookBorrowController extends Controller
         }
     }
     //create data end
+
+    //read data start
+    public function show(){
+        return BookBorrow::all();
+    }
+
+    public function detail($id){
+        if(DB::table('book_borrow')->where('book_borrow_id', $id)->exists()){
+            $detail_book_borrow = DB::table('book_borrow')
+            ->select('book_borrow.book_borrow_id', 'book_borrow.student_id', 'students.student_name', 'book_borrow.date_of_borrowing', 'book_borrow.date_of_returning')
+            ->join('students', 'students.student_id', '=', 'book_borrow.student_id')
+            ->where('book_borrow_id', $id)
+            ->get();
+            return Response()->json($detail_book_borrow);
+        }else {
+            return Response()->json(['message' => 'Couldnt find the data']);
+        }
+    }
+    //read data end
 }

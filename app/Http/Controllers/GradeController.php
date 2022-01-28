@@ -48,4 +48,22 @@ class GradeController extends Controller
         }
     }
     //create data end
+
+    //read data start
+    public function show(){
+        return Grade::all();
+    }
+
+    public function detail($id){
+        if(DB::table('grade')->where('class_id', $id)->exists()){
+            $detail_grade = DB::table('grade')
+            ->select('grade.*')
+            ->where('class_id', $id)
+            ->get();
+            return Response()->json($detail_grade);
+        }else {
+            return Response()-> json(['message' => 'Couldnt find the data']);
+        }
+    }
+    //read data end
 }

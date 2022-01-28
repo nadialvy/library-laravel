@@ -43,4 +43,23 @@ class BookReturnController extends Controller
         }
     }
     //create data end
+
+    //read data start
+    public function show(){
+        return BookReturn::all();
+    }
+
+    public function detail($id){
+        if(DB::table('book_return')->where('book_return_id', $id)->exists()){
+            $detail = DB::table('book_return')
+            ->select('book_return.*')
+            ->join('book_borrow', 'book_borrow.book_borrow_id', '=', 'book_return.book_borrow_id')
+            ->where('book_return_id', $id)
+            ->get();
+            return Response()->json($detail);
+        }else{
+            return Response()->json(['message' => 'Couldnt find the data']);
+        }
+    }
+    //read data end
 }
