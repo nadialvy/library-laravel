@@ -41,7 +41,7 @@ class GradeController extends Controller
             ]);
         } else 
         {   
-            return Reponse()->json([
+            return Response()->json([
                 'status' => 0,
                 'message' => 'Failed create new data!'
             ]);
