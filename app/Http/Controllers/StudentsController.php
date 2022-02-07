@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class StudentsController extends Controller
 {

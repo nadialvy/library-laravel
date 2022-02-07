@@ -6,9 +6,17 @@ use App\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+    //greet user
+    public function bookAuth(){
+        $data = "Welcome " . Auth::user()->name;
+        return response()->json($data, 200);
+    }
+    //greet user end
+
     //create data start
     public function store(Request $request)
     {
